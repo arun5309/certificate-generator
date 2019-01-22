@@ -1,0 +1,25 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Certificate generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</head>
+<body>
+    <div id="container">
+        <form id="details" target="_blank" action="make_certificate.php" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                Name: <input id="name" name="name">
+            </div>
+            <div class="field">
+                Photo: <input id="photo" type="file" name="photo">
+            </div>
+            <div class="field">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
