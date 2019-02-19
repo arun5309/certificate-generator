@@ -21,10 +21,11 @@
         
         $certificate = new FPDF("Landscape", "pt", $certificate_dimensions);
         $certificate->AddPage();
-        $certificate->SetFont("Times", "", 16);
+        $certificate->SetFont("Times", "", 20);
             
         $certificate->Image($certificate_template, 0, 0, $certificate_dimensions[0], $certificate_dimensions[1]);
         $certificate->Text($name_pos[0], $name_pos[1], $name);
+        $certificate->SetFont("Times", "", 16);
         $certificate->Text($event_pos[0], $event_pos[1], $event);
     
         $certificate->Output("I", "certificate.pdf");        
