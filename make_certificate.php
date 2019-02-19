@@ -2,7 +2,46 @@
     // For generating pdf
     require('fpdf/fpdf.php');
 
+    function pixel_to_pt($px)
+    {
+        return round(0.75*$px);
+    }
+    
+    function pt_to_pixel($pt)
+    {
+        return round(4*$pt/3);
+    }
+    
+    function make_participation_certificate($name, $event)
+    {
+        $dimensions = array(pixel_to_pt(980), pixel_to_pt(693));
+        $name_pos = array(pixel_to_pt(454), pixel_to_pt(415));
+        $event_pos = array(pixel_to_pt(454), pixel_to_pt(480));;
+        $certificate_template = "res/participant.png";
+        
+        $certificate = new FPDF("Landscape", "pt", $dimensions);
+        $certificate->AddPage();
+        $certificate->SetFont("Times", "", 16);
+            
+        $certificate->Image($certificate_template, 0, 0, $dimensions[0], $dimensions[1]);
+        $certificate->Text($name_pos[0], $name_pos[1], $name);
+        $certificate->Text($event_pos[0], $event_pos[1], $event);
+    
+        $certificate->Output("I", "certificate.pdf");        
+    }
+    
     // Main
+    if($_POST["name"] && $_POST["event"])
+    {
+        $name = $_POST["name"];
+        $event = $_POST["event"];
+        
+        make_participation_certificate($name, $event);
+        
+        echo "<h1> Generated certificate </h1>";
+        exit();
+    }
+    /*
     if($_POST["name"] && $_FILES["photo"])
     {
         $errors = array();
@@ -33,7 +72,7 @@
             
             // Content
             $certificate->Image("uploads/" . $file_name, 10, 10, 100, 128);
-            $certificate->Text(130, 10, $name);
+            $certificate->Text(30, 30, $name);
 
             // Generation
             $certificate->Output("D", "certificate.pdf");
@@ -57,4 +96,5 @@
     {
         echo "<h1> Fill name and upload photo </h1>";
     }
+    */
 ?>
