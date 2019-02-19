@@ -14,16 +14,16 @@
     
     function make_participation_certificate($name, $event)
     {
-        $dimensions = array(pixel_to_pt(980), pixel_to_pt(693));
-        $name_pos = array(pixel_to_pt(454), pixel_to_pt(415));
-        $event_pos = array(pixel_to_pt(454), pixel_to_pt(480));;
+        $certificate_dimensions = array(pixel_to_pt(1123), pixel_to_pt(794));
+        $name_pos = array(pixel_to_pt(520), pixel_to_pt(480));
+        $event_pos = array(pixel_to_pt(520), pixel_to_pt(545));;
         $certificate_template = "res/participant.png";
         
-        $certificate = new FPDF("Landscape", "pt", $dimensions);
+        $certificate = new FPDF("Landscape", "pt", $certificate_dimensions);
         $certificate->AddPage();
         $certificate->SetFont("Times", "", 16);
             
-        $certificate->Image($certificate_template, 0, 0, $dimensions[0], $dimensions[1]);
+        $certificate->Image($certificate_template, 0, 0, $certificate_dimensions[0], $certificate_dimensions[1]);
         $certificate->Text($name_pos[0], $name_pos[1], $name);
         $certificate->Text($event_pos[0], $event_pos[1], $event);
     
